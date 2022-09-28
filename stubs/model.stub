@@ -1,0 +1,34 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+    'created_by',  'updated_by', 'deleted_by'
+    ]; //← the fields name inside the array is mass-assignable
+
+    protected $hidden = [
+    'created_at', 'updated_at', 'deleted_at', 'created_by',  'updated_by', 'deleted_by'
+    ];
+
+    protected $guarded = ['id']; //← the field name inside the array is not mass-assignable
+
+
+     /********** Relationships Start **********/
+
+
+
+     /********** Relationships End **********/
+
+
+     /********** Accessor Start **********/
+
+
+    /********** Accessor End **********/
+}
