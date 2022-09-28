@@ -1,7 +1,7 @@
 I have mentioned comments with every line of my code so that you could easily get hands on things, follow my comments and you will get everything.
 Incase of any confusions, ask me anything I will explain briefly.
 
-I have done my own Email configuration setup on Mailtrap.io, you can use yours in .env
+I have done my own Email configuration setup on Mailtrap.io, you can use yours in .env file
 
 I have my own tiwilio keys in .env, you can set up your own, After providing your credentials in .env, go to Api_UserController Line 59 and 172 and remove my hardcoded number, you will find my comment on those lines too, use "$user->phone" instead.
 
