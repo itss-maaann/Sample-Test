@@ -18,10 +18,11 @@ class Api_UserController extends Controller
      */
     public function index()
     {
+        $users = User::all();
         return response()->json([
             'status' => true,
-            'message' => 'Hey, I am index, You can populate your view with your data from this function',
-            'result' => (object) [],
+            'message' => 'You can populate your view with listed ata',
+            'result' => $users
         ]);
     }
 
@@ -58,6 +59,7 @@ class Api_UserController extends Controller
             //You have to use "$user->phone" instead of hardcoding
             $phone = '+923359369361'; //I just hardcoded my number because i have verified this on TWILIO trial account so that i can receive sms.
             $message = 'Hey Mr/Mrs '.$user->name.' Your account is created';
+            //Function for sending SMS is written in app\Http\helpers
             sendSms($phone, $message) ? $smsConfirmation = "SMS sent to ".$phone : $smsConfirmation = "SMS failed for ".$phone;
             //If code is processed without any errors, record will be inserted successfully
             DB::commit();
@@ -166,11 +168,13 @@ class Api_UserController extends Controller
             //This will soft delete user
             $user->delete();
             $message = 'Your Account has been deleted';
+            //Function for sending Email in Queue is written in app\Http\helpers
             sendEmail($user, $message);
 
             //You have to use "$user->phone" instead of hardcoding
             $phone = '+923359369361'; //I just hardcoded my number because i have verified this on TWILIO trial account so that i can receive sms.
             $message = 'Hey Mr/Mrs '.$user->name.' Your account has been deleted';
+            //Function for sending SMS is written in app\Http\helpers
             sendSms($phone, $message) ? $smsConfirmation = "SMS sent to ".$phone : $smsConfirmation = "SMS failed for ".$phone;
 
             //If code is processed without any errors, record will be deleted successfully
