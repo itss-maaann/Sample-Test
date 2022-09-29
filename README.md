@@ -1,64 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+I have mentioned comments with every line of my code so that you could easily get hands on things, follow my comments and you will get everything.
+Incase of any confusions, ask me anything I will explain briefly.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+I have done my own Email configuration setup on Mailtrap.io, you can use yours in .env file
 
-## About Laravel
+I have my own tiwilio keys in .env, you can set up your own, After providing your credentials in .env, go to Api_UserController Line 59 and 172 and remove my hardcoded number, you will find my comment on those lines too, use "$user->phone" instead.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+In Api_userController Line 130, i have mentioned a comment for handling some responses, but as those changes are made in vendor it would not reflect with you, you can customize as you own, I am providing code for that below:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+if ($e instanceof ModelNotFoundException) { //Customized response for user not found
+    return response()->json([
+	'status' => false,
+	'message' => 'No record was found',
+	'result' => (object) [],
+	], 404);
+}
+copy the above code and paste in start of "render" function in "Illuminate\Foundation\Exceptions\Handler"
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+As I have used resource routes so these are the following Web and Api Routes
 
-## Learning Laravel
+API Routes:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Index:
+URL => api/user, name=> user.index, method => GET|HEAD
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Store:
+URL => api/user, name=> user.store, method => POST
 
-## Laravel Sponsors
+Create:
+URL => api/user/create, name=> user.create, method => GET|HEAD
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Show:
+URL => api/user/{user}, name=> user.show, method => GET|HEAD
 
-### Premium Partners
+Update:
+URL => api/user/{user}, name=> user.update, method => PUT|PATCH
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Destroy:
+URL => api/user/{user}, name=> user.destroy, method => DELETE
 
-## Contributing
+Edit:
+URL => api/user/{user}/edit, name=> user.edit, method => GET|HEAD
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+Web Routes:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Index:
+URL => user, name=> user.index, method => GET|HEAD
 
-## Security Vulnerabilities
+Store:
+URL => user, name=> user.store, method => POST
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Create:
+URL => user/create, name=> user.create, method => GET|HEAD
 
-## License
+Show:
+URL => user/{user}, name=> user.show, method => GET|HEAD
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Update:
+URL => user/{user}, name=> user.update, method => PUT|PATCH
+
+Destroy:
+URL => user/{user}, name=> user.destroy, method => DELETE
+
+Edit:
+URL => user/{user}/edit, name=> user.edit, method => GET|HEAD
