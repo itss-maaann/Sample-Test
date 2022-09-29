@@ -21,7 +21,7 @@ class Api_UserController extends Controller
         $users = User::all();
         return response()->json([
             'status' => true,
-            'message' => 'You can populate your view with listed ata',
+            'message' => 'You can populate your view with listed data',
             'result' => $users
         ]);
     }
