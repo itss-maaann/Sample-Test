@@ -56,8 +56,8 @@ class Api_UserController extends Controller
         try {
             //Mass assignment to User Model
             $user = User::create($request->validated());
-            //You have to use "$user->phone" instead of hardcoding
-            $phone = '+923359369361'; //I just hardcoded my number because i have verified this on TWILIO trial account so that i can receive sms.
+            //Make sure you send message to your proper verified caller Id number on Twilio
+            $phone = $user->phone; //I used hardcoded number when I was testing because i had only my verified number on TWILIO trial account so I could receive sms only on my number at that time.
             $message = 'Hey Mr/Mrs '.$user->name.' Your account is created';
             //Function for sending SMS is written in app\Http\helpers
             sendSms($phone, $message) ? $smsConfirmation = "SMS sent to ".$phone : $smsConfirmation = "SMS failed for ".$phone;
@@ -171,7 +171,7 @@ class Api_UserController extends Controller
             //Function for sending Email in Queue is written in app\Http\helpers
             sendEmail($user, $message);
 
-            //You have to use "$user->phone" instead of hardcoding
+            //You have to use "$user->phone" instead of hardcoding as I have used in Store function, I hardcoded for testing purpose only
             $phone = '+923359369361'; //I just hardcoded my number because i have verified this on TWILIO trial account so that i can receive sms.
             $message = 'Hey Mr/Mrs '.$user->name.' Your account has been deleted';
             //Function for sending SMS is written in app\Http\helpers
