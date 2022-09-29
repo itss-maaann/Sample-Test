@@ -24,7 +24,7 @@ Index:
 URL => api/user, name=> user.index, method => GET|HEAD
 
 Store:
-URL => api/user, name=> user.store, method => POST
+URL => api/user, name=> user.store, method => POST (Make sure to pass ("Accept": "application/json"), otherwise you will not receive validation failure errors in json response.)
 
 Create:
 URL => api/user/create, name=> user.create, method => GET|HEAD
@@ -33,7 +33,8 @@ Show:
 URL => api/user/{user}, name=> user.show, method => GET|HEAD
 
 Update:
-URL => api/user/{user}, name=> user.update, method => PUT|PATCH
+URL => api/user/{user}, name=> user.update, method => PUT|PATCH (Make sure to pass ("Accept": "application/json"), otherwise you will not receive validation failure errors in json response.)
+Remember that this would be a PUT request so if you must send data in json format e-g postman (Body => raw [JSON])
 
 Destroy:
 URL => api/user/{user}, name=> user.destroy, method => DELETE
